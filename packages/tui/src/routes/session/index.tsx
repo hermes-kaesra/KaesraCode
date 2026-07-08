@@ -50,6 +50,7 @@ import { TodoItem } from "../../component/todo-item"
 import { DialogMessage } from "./dialog-message"
 import type { PromptInfo } from "../../component/prompt/history"
 import { DialogConfirm } from "../../ui/dialog-confirm"
+import { DialogPrompt } from "../../ui/dialog-prompt"
 import { DialogTimeline } from "./dialog-timeline"
 import { DialogForkFromTimeline } from "./dialog-fork-from-timeline"
 import { DialogSessionRename } from "../../component/dialog-session-rename"
@@ -1077,6 +1078,34 @@ export function Session() {
         dialog.clear()
         moveChild(-1)
       }),
+    },
+    {
+      title: "Set session goal",
+      value: "session.goal",
+      description: "Define what you want to accomplish in this session",
+      category: "Session",
+      suggested: true,
+      slash: {
+        name: "goal",
+        aliases: ["g", "hedef"],
+      },
+      run: async () => {
+        const currentGoal = kv.get("session_goal_" + route.sessionID, "")
+        const result = await DialogPrompt.show(
+          dialog,
+          "🎯 Session Goal",
+          {
+            description: "Define what you want to accomplish in this session. The AI will track progress against this goal.",
+            placeholder: "e.g., Fix all TypeScript errors in the auth module",
+            value: typeof currentGoal === "string" ? currentGoal : "",
+          },
+        )
+        if (result) {
+          kv.set("session_goal_" + route.sessionID, result)
+          toast.show({ message: "Goal set! 🎯", variant: "success" })
+        }
+        dialog.clear()
+      },
     },
   ])
 
