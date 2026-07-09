@@ -1,47 +1,94 @@
 # ⚡ KaesraCode
 
 > Forked from [anomalyco/opencode](https://github.com/anomalyco/opencode) (183k ⭐)
-> Agent harness enhanced with natural language understanding and multi-agent orchestration.
+> **Herkes için** özelleştirilmiş AI coding agent.
 
-## Features
+---
 
-| Feature | Status | Description |
-|---------|--------|-------------|
-| 🎯 `/goal` | ✅ | Session goal tracking with persistent storage |
-| 🔍 Transparent TUI | ✅ | `kaesra-transparent` theme — terminal background visible |
-| 🧠 Prompt Enhancer | ✅ | Naturalizes system prompts — AI "understands" instructions better |
-| 🤖 Multi-Agent Teams | ✅ | `/team` command — fullstack, research, duo templates |
-| ⌨️ Vim keybindings | 📋 | Coming soon |
+## 🎯 Neden KaesraCode?
 
-## Prompt Enhancer
+OpenCode harika ama herkese göre değil. KaesraCode şunları ekliyor:
 
-System prompts and plugin instructions are often written in rigid, robotic language.
-The Prompt Enhancer rewrites these in natural, human-like speech so the AI
-interprets them correctly and produces better results.
+| Özellik | OpenCode | KaesraCode |
+|---------|----------|------------|
+| 🎯 **Session Goals** | ❌ | `/goal` — ne yapacağını bil |
+| 👁️ **Transparan Tema** | ❌ | Terminal wallpaper'ın görünür |
+| 🧠 **Prompt Enhancer** | ❌ | Sistem komutlarını doğal dile çevirir |
+| 🤖 **Agent Teams** | ❌ | `/team` — fullstack, research, duo |
+| 📁 **Custom Prompts** | ❌ | `.kaesra/prompts/*.md` — proje AI kişiliği |
+| 👋 **Welcome Wizard** | ❌ | İlk açılışta rehberlik |
+| 📊 **Session Stats** | ❌ | `/stats` — token, süre, mesaj sayısı |
 
-- "MUST NOT" → "Hey, avoid doing X. It'll break things."
-- "ONLY use" → "Stick to X, it's the right tool."
-- "NEVER" → "Seriously, don't. Bad things happen."
+---
 
-## Multi-Agent Teams
+## 🚀 Komutlar
 
-Use `/team` to assemble an agent team:
+| Komut | Alias | Ne Yapar |
+|-------|-------|----------|
+| `/goal` | `/g`, `/hedef` | Oturum hedefi belirle |
+| `/team` | `/takim`, `/agents` | Çoklu agent takımı kur |
+| `/stats` | `/usage`, `/cost` | Oturum istatistikleri |
+| `/models` | (yerleşik) | Model değiştir |
+| `/theme` | (yerleşik) | Tema değiştir |
 
-- **fullstack**: Tech lead + frontend + backend + DevOps + QA
-- **research**: Research lead + researcher + implementer + reviewer
-- **duo**: Solo dev + reviewer
+---
 
-The team leader decomposes tasks, delegates to workers, and aggregates results.
+## 📁 `.kaesra/prompts/`
 
-## Install
+Projene özel AI kişiliği tanımla. `.md` dosyalarını `.kaesra/prompts/` dizinine koy yeter:
 
-```bash
-npm i -g kaesracode
-# or from source
-git clone https://github.com/hermes-kaesra/KaesraCode
-cd KaesraCode && bun install && bun run dev
+```markdown
+<!-- .kaesra/prompts/style.md -->
+## Kod Stili
+- Her fonksiyona JSDoc yorumu ekle
+- `const` kullan, `let` kullanma
+- Türkçe yorum yaz
 ```
 
-## License
+Tüm `.md` dosyaları otomatik olarak sistem prompt'una eklenir.
 
-MIT — same as upstream.
+---
+
+## 🤖 Agent Teams
+
+3 hazır takım şablonu:
+
+- **fullstack**: Tech lead + frontend + backend + DevOps + QA
+- **research**: Research lead + researcher + implementer + reviewer  
+- **duo**: Solo dev + reviewer (hafif, hızlı)
+
+---
+
+## 🔧 Teknik
+
+```bash
+git clone https://github.com/hermes-kaesra/KaesraCode
+cd KaesraCode
+bun install
+bun run dev
+```
+
+### Plugin Mimarisi
+
+Tüm KaesraCode özellikleri plugin olarak yazıldı:
+- `packages/opencode/src/plugin/kaesra/prompt-enhancer.ts`
+- `packages/opencode/src/plugin/kaesra/team-agent.ts`
+- `packages/opencode/src/plugin/kaesra/custom-prompts.ts`
+- `packages/opencode/src/plugin/kaesra/welcome-wizard.ts`
+
+---
+
+## 📋 Roadmap
+
+- [ ] Vim keybindings (hjkl)
+- [ ] Web dashboard
+- [ ] Python SDK
+- [ ] Sandbox mode (Docker)
+- [ ] VS Code / Cursor eklentisi
+- [ ] Görsel çıktı (diyagram, UI mockup)
+
+---
+
+<p align="center">
+  <sub>⚡ MIT License — Fork it, ship it.</sub>
+</p>
