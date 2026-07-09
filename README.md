@@ -1,129 +1,213 @@
 <p align="center">
-  <a href="https://opencode.ai">
-    <picture>
-      <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
-      <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
-      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="OpenCode logo">
-    </picture>
-  </a>
-</p>
-<p align="center">The open source AI coding agent.</p>
-<p align="center">
-  <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
-  <a href="https://www.npmjs.com/package/opencode-ai"><img alt="npm" src="https://img.shields.io/npm/v/opencode-ai?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opencode/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opencode/publish.yml?style=flat-square&branch=dev" /></a>
+  <h1 align="center">⚡ KaesraCode</h1>
+  <p align="center"><strong>The AI coding agent, customized for everyone.</strong></p>
 </p>
 
 <p align="center">
-  <a href="README.md">English</a> |
-  <a href="README.zh.md">简体中文</a> |
-  <a href="README.zht.md">繁體中文</a> |
-  <a href="README.ko.md">한국어</a> |
-  <a href="README.de.md">Deutsch</a> |
-  <a href="README.es.md">Español</a> |
-  <a href="README.fr.md">Français</a> |
-  <a href="README.it.md">Italiano</a> |
-  <a href="README.da.md">Dansk</a> |
-  <a href="README.ja.md">日本語</a> |
-  <a href="README.pl.md">Polski</a> |
-  <a href="README.ru.md">Русский</a> |
-  <a href="README.bs.md">Bosanski</a> |
-  <a href="README.ar.md">العربية</a> |
-  <a href="README.no.md">Norsk</a> |
-  <a href="README.br.md">Português (Brasil)</a> |
-  <a href="README.th.md">ไทย</a> |
-  <a href="README.tr.md">Türkçe</a> |
-  <a href="README.uk.md">Українська</a> |
-  <a href="README.bn.md">বাংলা</a> |
-  <a href="README.gr.md">Ελληνικά</a> |
-  <a href="README.vi.md">Tiếng Việt</a>
+  <a href="https://github.com/hermes-kaesra/KaesraCode"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-hermes--kaesra%2FKaesraCode-181717?style=flat-square&logo=github" /></a>
+  <a href="https://github.com/anomalyco/opencode"><img alt="Fork of OpenCode" src="https://img.shields.io/badge/fork%20of-OpenCode%20183k%20⭐-58a6ff?style=flat-square" /></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=flat-square" /></a>
 </p>
 
-[![OpenCode Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opencode.ai)
+---
+
+> Fork of [anomalyco/opencode](https://github.com/anomalyco/opencode) (183k ⭐) — the open source AI coding agent, enhanced with community-requested features.
+
+## ✨ What KaesraCode adds
+
+| Feature | What it does |
+|---------|-------------|
+| 🎯 **Session Goals** | `/goal` — tell the AI what you want, it tracks progress |
+| 🤖 **Agent Teams** | `/team` — assemble multi-agent squads (fullstack, research, duo) |
+| 🧠 **Prompt Enhancer** | Naturalizes robotic instructions into human speech — AI understands better |
+| 📁 **Custom Prompts** | Drop `.md` files in `.kaesra/prompts/` — project-specific AI personality |
+| 👁️ **Transparent Theme** | `kaesra-transparent` — terminal wallpaper visible through TUI |
+| 👋 **Welcome Wizard** | First-run onboarding, no confusion |
+| 📊 **Session Stats** | `/stats` — token usage, message count, elapsed time |
 
 ---
 
-### Installation
+## 📦 Installation
+
+### From source (recommended)
 
 ```bash
-# YOLO
-curl -fsSL https://opencode.ai/install | bash
+git clone https://github.com/hermes-kaesra/KaesraCode.git
+cd KaesraCode
 
-# Package managers
-npm i -g opencode-ai@latest        # or bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS and Linux (recommended, always up to date)
-brew install opencode              # macOS and Linux (official brew formula, updated less)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # Any OS
-nix run nixpkgs#opencode           # or github:anomalyco/opencode for latest dev branch
+# Install dependencies (requires Bun)
+bun install
+
+# Run
+bun run dev
 ```
 
-> [!TIP]
-> Remove versions older than 0.1.x before installing.
+### Prerequisites
 
-### Desktop App (BETA)
+| Tool | Why |
+|------|-----|
+| **[Bun](https://bun.sh)** `>=1.2` | Runtime & package manager |
+| **Git** | Version control |
+| **An API key** | [OpenRouter](https://openrouter.ai), [Anthropic](https://console.anthropic.com), [OpenAI](https://platform.openai.com), or any OpenAI-compatible provider |
 
-OpenCode is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/opencode/releases) or [opencode.ai/download](https://opencode.ai/download).
-
-| Platform              | Download                           |
-| --------------------- | ---------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-mac-arm64.dmg`   |
-| macOS (Intel)         | `opencode-desktop-mac-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe` |
-| Linux                 | `.deb`, `.rpm`, or `.AppImage`     |
+### Configure a provider
 
 ```bash
-# macOS (Homebrew)
-brew install --cask opencode-desktop
-# Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+# Set your API key
+export OPENROUTER_API_KEY="sk-or-v1-..."
+
+# Or configure interactively
+bun run dev
+# Then type /model to select your provider
 ```
 
-#### Installation Directory
-
-The install script respects the following priority order for the installation path:
-
-1. `$OPENCODE_INSTALL_DIR` - Custom installation directory
-2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path
-3. `$HOME/bin` - Standard user binary directory (if it exists or can be created)
-4. `$HOME/.opencode/bin` - Default fallback
+### Quick install script
 
 ```bash
-# Examples
-OPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://opencode.ai/install | bash
-XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://raw.githubusercontent.com/hermes-kaesra/KaesraCode/main/install.sh | bash
 ```
-
-### Agents
-
-OpenCode includes two built-in agents you can switch between with the `Tab` key.
-
-- **build** - Default, full-access agent for development work
-- **plan** - Read-only agent for analysis and code exploration
-  - Denies file edits by default
-  - Asks permission before running bash commands
-  - Ideal for exploring unfamiliar codebases or planning changes
-
-Also included is a **general** subagent for complex searches and multistep tasks.
-This is used internally and can be invoked using `@general` in messages.
-
-Learn more about [agents](https://opencode.ai/docs/agents).
-
-### Documentation
-
-For more info on how to configure OpenCode, [**head over to our docs**](https://opencode.ai/docs).
-
-### Contributing
-
-If you're interested in contributing to OpenCode, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.
-
-### Building on OpenCode
-
-If you are working on a project that's related to OpenCode and is using "opencode" as part of its name, for example "opencode-dashboard" or "opencode-mobile", please add a note to your README to clarify that it is not built by the OpenCode team and is not affiliated with us in any way.
 
 ---
 
-**Join our community** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+## 🚀 Quick Start
+
+```bash
+cd your-project
+kaesracode
+```
+
+First time? The **Welcome Wizard** guides you through setup.
+
+### Essential commands
+
+| Command | Alias | Does |
+|---------|-------|------|
+| `/goal` | `/g`, `/hedef` | Set session goal |
+| `/team` | `/takim` | Assemble agent team |
+| `/stats` | `/usage` | View session stats |
+| `/models` | (built-in) | Switch AI model |
+| `Tab` | (built-in) | Switch between Build / Plan agents |
+
+---
+
+## 📁 Project Customization
+
+Create `.kaesra/prompts/` in any project:
+
+```bash
+mkdir -p .kaesra/prompts
+cat > .kaesra/prompts/style.md << 'EOF'
+## Code Style
+- Use const, never let
+- Every function gets a JSDoc comment
+- Turkish comments preferred
+- Prefer async/await over .then()
+EOF
+```
+
+All `.md` files are auto-injected into the AI's system prompt. Different project, different personality.
+
+---
+
+## 🤖 Agent Teams
+
+KaesraCode includes three pre-built multi-agent teams:
+
+| Team | Members | Best for |
+|------|---------|----------|
+| **fullstack** | Tech lead + frontend + backend + DevOps + QA | Full-stack projects |
+| **research** | Lead + researcher + implementer + reviewer | Code exploration |
+| **duo** | Solo dev + reviewer | Quick, lightweight work |
+
+Activate with `/team fullstack` and the AI automatically distributes work across agents.
+
+---
+
+## 🎨 Themes
+
+20+ built-in themes + our custom transparent theme:
+
+```bash
+# In-session
+/theme kaesra-transparent
+/theme tokyonight
+/theme dracula
+```
+
+`kaesra-transparent` uses `rgba(0,0,0,0)` background — your terminal wallpaper shows through.
+
+---
+
+## 🔧 Building from source
+
+```bash
+git clone https://github.com/hermes-kaesra/KaesraCode.git
+cd KaesraCode
+bun install
+bun run dev          # CLI mode
+bun run dev:desktop  # Desktop app (beta)
+```
+
+---
+
+## 🧩 Architecture
+
+KaesraCode is a **monorepo** with 36 packages:
+
+```
+packages/
+├── opencode/     # Main CLI entry
+├── tui/          # Terminal UI (SolidJS + OpenTUI)
+├── core/         # Core engine (Effect.ts)
+├── llm/          # LLM provider layer
+├── server/       # HTTP/MCP server
+├── plugin/       # Plugin system
+├── sdk/          # JS SDK
+├── desktop/      # Desktop app (Tauri)
+└── ...           # 28 more packages
+```
+
+Our custom plugins live in `packages/opencode/src/plugin/kaesra/`:
+- `prompt-enhancer.ts` — Natural language transformation
+- `team-agent.ts` — Multi-agent orchestration
+- `custom-prompts.ts` — Project-level prompt loading
+- `welcome-wizard.ts` — First-run experience
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Branch off `hermes-features`: `git checkout -b my-feature hermes-features`
+3. Conventional commits: `feat(scope): description`
+4. PR to `hermes-features`
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full guide.
+
+---
+
+## 📋 Upstream vs KaesraCode
+
+| Feature | OpenCode | KaesraCode |
+|---------|:--------:|:----------:|
+| TUI coding agent | ✅ | ✅ |
+| Provider agnostic | ✅ | ✅ |
+| Agent teams | ❌ | ✅ |
+| Session goals | ❌ | ✅ |
+| Custom prompts | ❌ | ✅ |
+| Prompt enhancer | ❌ | ✅ |
+| Transparent theme | ❌ | ✅ |
+| Welcome wizard | ❌ | ✅ |
+| Session stats | ❌ | ✅ |
+
+---
+
+## ⚖️ License
+
+MIT — same as upstream. Fork it, ship it, build on it.
+
+---
+
+<p align="center">
+  <sub>Built on the shoulders of <a href="https://github.com/anomalyco/opencode">OpenCode</a> by <a href="https://github.com/anomalyco">AnomalyCo</a>. Enhanced by <a href="https://github.com/hermes-kaesra">Hermes</a>.</sub>
+</p>
