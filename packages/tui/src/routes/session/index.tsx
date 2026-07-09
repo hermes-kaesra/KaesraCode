@@ -1080,6 +1080,49 @@ export function Session() {
       }),
     },
     {
+      title: "Session stats",
+      value: "session.stats",
+      description: "View token usage, cost, and elapsed time for this session",
+      category: "Session",
+      slash: {
+        name: "stats",
+        aliases: ["usage", "cost"],
+      },
+      run: async () => {
+        const sessionData = session()
+        if (!sessionData) return
+        const sessionMessages = messages()
+        const now = Date.now()
+        const created = sessionData.created ? new Date(sessionData.created).getTime() : now
+        const elapsed = Math.floor((now - created) / 1000 / 60) // minutes
+
+        // Count messages by role
+        let userMsgs = 0, assistantMsgs = 0, toolMsgs = 0
+        let totalTokens = 0
+        for (const msg of sessionMessages) {
+          if (msg.role === "user") userMsgs++
+          else if (msg.role === "assistant") assistantMsgs++
+          else toolMsgs++
+          totalTokens += (msg.usage?.input_tokens || 0) + (msg.usage?.output_tokens || 0)
+        }
+
+        const lines = [
+          `📊 Session Stats`,
+          ``,
+          `⏱️  Elapsed: ~${elapsed} min`,
+          `💬 Messages: ${userMsgs} user · ${assistantMsgs} assistant · ${toolMsgs} tool`,
+          `🔤 Est. tokens: ${totalTokens.toLocaleString()}`,
+          `📁 Session ID: ${sessionData.id.slice(0, 8)}...`,
+        ]
+
+        await DialogAlert.show(dialog, {
+          title: "📊 Session Stats",
+          message: lines.join("\n"),
+        })
+        dialog.clear()
+      },
+    },
+    {
       title: "Set session goal",
       value: "session.goal",
       description: "Define what you want to accomplish in this session",
