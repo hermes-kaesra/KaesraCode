@@ -2,6 +2,7 @@ import { SyntaxStyle, RGBA, type TerminalColors } from "@opentui/core"
 import aura from "./assets/aura.json" with { type: "json" }
 import ayu from "./assets/ayu.json" with { type: "json" }
 import carbonfox from "./assets/carbonfox.json" with { type: "json" }
+import kaesraTransparent from "./assets/kaesra-transparent.json" with { type: "json" }
 import catppuccinFrappe from "./assets/catppuccin-frappe.json" with { type: "json" }
 import catppuccinMacchiato from "./assets/catppuccin-macchiato.json" with { type: "json" }
 import catppuccin from "./assets/catppuccin.json" with { type: "json" }
@@ -161,6 +162,7 @@ export const DEFAULT_THEMES: Record<string, ThemeJson> = {
   vercel,
   zenburn,
   carbonfox,
+  "kaesra-transparent": kaesraTransparent,
 }
 
 const pluginThemes: Record<string, ThemeJson> = {}
