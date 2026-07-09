@@ -1107,6 +1107,43 @@ export function Session() {
         dialog.clear()
       },
     },
+    {
+      title: "Create agent team",
+      value: "session.team",
+      description: "Assemble a multi-agent team for complex tasks",
+      category: "Session",
+      suggested: true,
+      slash: {
+        name: "team",
+        aliases: ["takim", "agents"],
+      },
+      run: async () => {
+        const templates = ["fullstack", "research", "duo"]
+        const labels: Record<string, string> = {
+          fullstack: "👨‍💻 Full-Stack (lead + frontend + backend + DevOps + QA)",
+          research: "🔬 Research (researcher + implementer + reviewer)",
+          duo: "👥 Duo (solo dev + reviewer)",
+        }
+        const currentTeam = kv.get("session_team_" + route.sessionID, "")
+        const result = await DialogPrompt.show(
+          dialog,
+          "🤖 Agent Team",
+          {
+            description: "Type a team name: fullstack, research, or duo.",
+            placeholder: labels[typeof currentTeam === "string" ? currentTeam : ""] || "fullstack",
+            value: typeof currentTeam === "string" ? currentTeam : "",
+          },
+        )
+        if (result && templates.includes(result.trim().toLowerCase())) {
+          const team = result.trim().toLowerCase()
+          kv.set("session_team_" + route.sessionID, team)
+          toast.show({ message: `Team assembled: ${labels[team]}! 🤖`, variant: "success" })
+        } else if (result) {
+          toast.show({ message: "Unknown team. Use: fullstack, research, or duo", variant: "warning" })
+        }
+        dialog.clear()
+      },
+    },
   ])
 
   const sessionCommands = createMemo(() =>
